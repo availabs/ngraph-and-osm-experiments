@@ -18,7 +18,7 @@ npm install
 npm start
 ```
 
-NOTE: the project is currently set configured to use http://overpass-api.de
+NOTE: the project is currently configured to use http://overpass-api.de
 
 ---
 
