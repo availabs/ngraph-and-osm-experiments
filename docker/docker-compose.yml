@@ -1,0 +1,18 @@
+version: '2'
+services:
+    db:
+      image: tomchik/osm_db:staging
+      container_name: osm_db
+      ports:
+        - "5432:5432"
+      volumes:
+        - ./pg_data:/data
+        - ./host_mnt:/host_mnt
+      env_file: "../config/postgres.docker.env"
+      environment:
+        - PGDATA=/data
+    overpass:
+      image: tomchik/overpass_server:staging
+      container_name: overpass_server
+      volumes:
+        - ./host_mnt:/host_mnt
