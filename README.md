@@ -32,9 +32,30 @@ NOTE: I modified the docker-overpass-api repo's files.
 
 #### Instructions
 
-* TODO
+##### Get the data
 
-[how-to-get-all-roads-around-a-given-location-in-openstreetmap](https://stackoverflow.com/a/20323690)
+```
+curl 'http://download.geofabrik.de/north-america/us/new-york-latest.osm.bz2' > docker/host_mnt/new-york-latest.osm.bz2
+```
+
+##### Build the overpass-api image
+
+```
+cd docker/docker-overpass-api
+docker build -t overpass_api .
+```
+
+##### Start the Overpass API Server
+
+WARNING: Currently, this will run init_osm3s.sh every time you create a new container.
+
+```
+cd ../
+mkdir -p host_mnt/overpass_DB
+docker run -it --restart=always -v "${PWD}/host_mnt/":/host_mnt -v "${PWD}/host_mnt/overpass_DB:/overpass_DB" -p 8000:80 overpass_api
+```
+
+#### Test it out
 
 Query:
 ```
@@ -49,139 +70,8 @@ way
 out body;
 ```
 
-Result
-```
-{
-    "version": 0.6,
-    "generator": "Overpass API 0.7.55 579b1eec",
-    "osm3s": {
-        "timestamp_osm_base": "",
-        "copyright": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL."
-    },
-    "elements": [
-        {
-            "type": "node",
-            "id": 42421800,
-            "lat": 40.7839788,
-            "lon": -73.9703286,
-            "tags": {
-                "highway": "traffic_signals"
-            }
-        },
-        {
-            "type": "node",
-            "id": 42424851,
-            "lat": 40.7846108,
-            "lon": -73.9698592,
-            "tags": {
-                "highway": "traffic_signals"
-            }
-        },
-        {
-            "type": "node",
-            "id": 42427915,
-            "lat": 40.7820374,
-            "lon": -73.9717336,
-            "tags": {
-                "crossing": "traffic_signals",
-                "highway": "traffic_signals"
-            }
-        },
-        {
-            "type": "node",
-            "id": 42433564,
-            "lat": 40.7827173,
-            "lon": -73.9712566,
-            "tags": {
-                "highway": "traffic_signals"
-            }
-        },
-        {
-            "type": "node",
-            "id": 42435308,
-            "lat": 40.7833496,
-            "lon": -73.9707906,
-            "tags": {
-                "highway": "traffic_signals"
-            }
-        },
-        {
-            "type": "node",
-            "id": 1740700830,
-            "lat": 40.7821477,
-            "lon": -73.9716486,
-            "tags": {
-                "crossing": "zebra",
-                "highway": "crossing"
-            }
-        },
-        {
-            "type": "node",
-            "id": 3392519876,
-            "lat": 40.7834203,
-            "lon": -73.9707387,
-            "tags": {
-                "crossing": "zebra",
-                "highway": "crossing"
-            }
-        },
-        {
-            "type": "node",
-            "id": 3392519877,
-            "lat": 40.7833039,
-            "lon": -73.9708242,
-            "tags": {
-                "crossing": "zebra",
-                "highway": "crossing"
-            }
-        },
-        {
-            "type": "way",
-            "id": 46334664,
-            "nodes": [
-                42427915,
-                1740700830,
-                42433564
-            ],
-            "tags": {
-                "bicycle": "yes",
-                "cycleway:right": "lane",
-                "hgv": "local",
-                "highway": "secondary",
-                "name": "Central Park West",
-                "surface": "asphalt",
-                "tiger:cfcc": "A41",
-                "tiger:county": "New York, NY",
-                "tiger:name_base": "Central Park",
-                "tiger:name_direction_suffix": "W"
-            }
-        },
-        {
-            "type": "way",
-            "id": 542215780,
-            "nodes": [
-                42433564,
-                3392519877,
-                42435308,
-                3392519876,
-                42421800,
-                42424851
-            ],
-            "tags": {
-                "bicycle": "yes",
-                "cycleway:right": "lane",
-                "hgv": "no",
-                "highway": "secondary",
-                "name": "Central Park West",
-                "tiger:cfcc": "A41",
-                "tiger:county": "New York, NY",
-                "tiger:name_base": "Central Park",
-                "tiger:name_direction_suffix": "W"
-            }
-        }
-    ]
-}
-```
+[\[out:json\];way\["highway"~"trunk|secondary"\]\(around:100,40.7831,-73.9712\);\(._;>;\);out;](http://localhost:8000/api/interpreter?data=%5Bout%3Ajson%5D%3Bway%5B%22highway%22~%22trunk%7Csecondary%22%5D%28around%3A100%2C40%2E7831%2C-73%2E9712%29%3B%28%2E_%3B%3E%3B%29%3Bout%3B%0A)
+
 
 ---
 
