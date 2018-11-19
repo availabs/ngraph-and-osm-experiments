@@ -1,4 +1,6 @@
-# This README is currently just some rough notes.
+# ngraph and osm experiments
+
+## This README is currently just some rough notes.
 
 Download the NYS data from here: [http://download.geofabrik.de/north-america/us/new-york.html](http://download.geofabrik.de/north-america/us/new-york.html)
 
