@@ -4,44 +4,35 @@
 
 Download the NYS data from here: [http://download.geofabrik.de/north-america/us/new-york.html](http://download.geofabrik.de/north-america/us/new-york.html)
 
-https://github.com/anvaka/ngraph.path.demo
-https://anvaka.github.io/ngraph.path.demo/#?graph=amsterdam-roads&fromId=30029&toId=14782&finder=astar-uni
+---
 
-References
+## ngraph.path.demo
+
+[ngraph.path.demo](https://github.com/anvaka/ngraph.path.demo)
+
+Modified src/lib/loadGraph.js to receive data directly from overpass.
+
+#### Instructions
+
+```
+cd ngraph.path.demo/
+npm install
+npm start
+```
+
+NOTE: the project is currently set configured to use http://overpass-api.de
 
 ---
 
-## Loading the data into PGRouting.
-
-https://pgrouting.org/docs/tools/osm2pgrouting.html
-https://raw.githubusercontent.com/pgRouting/osm2pgrouting/master/mapconfig.xml
-
-https://github.com/Starefossen/docker-pgrouting
-https://hub.docker.com/r/starefossen/pgrouting
-
-Fails because osm2pgrouting runs out of memory: [issue](https://github.com/pgRouting/osm2pgrouting/issues/20)
-
-```
-sudo apt-get install osm2pgrouting
-```
-
----
-
-## Loading the data into Postgres.
-
-[loading_osm_postgis](https://www.bostongis.com/PrinterFriendly.aspx?content_name=loading_osm_postgis)
-
-```
-sudo apt-get install osm2pgsql
-```
-
----
-
-## Running an Overpass server
+### Running an Overpass server
 
 [docker-overpass-api](https://github.com/Frankkkkk/docker-overpass-api)
 
 NOTE: I modified the docker-overpass-api repo's files.
+
+#### Instructions
+
+* TODO
 
 [how-to-get-all-roads-around-a-given-location-in-openstreetmap](https://stackoverflow.com/a/20323690)
 
@@ -194,8 +185,32 @@ Result
 
 ---
 
-## ngraph.path.demo
+## References
 
-[ngraph.path.demo](https://github.com/anvaka/ngraph.path.demo)
+---
 
-Modified src/lib/loadGraph.js to receive data directly from overpass.
+### Loading the data into PGRouting.
+
+https://pgrouting.org/docs/tools/osm2pgrouting.html
+https://raw.githubusercontent.com/pgRouting/osm2pgrouting/master/mapconfig.xml
+
+https://github.com/Starefossen/docker-pgrouting
+https://hub.docker.com/r/starefossen/pgrouting
+
+Fails because osm2pgrouting runs out of memory: [issue](https://github.com/pgRouting/osm2pgrouting/issues/20)
+
+```
+sudo apt-get install osm2pgrouting
+```
+
+---
+
+### Loading the data into Postgres.
+
+[loading_osm_postgis](https://www.bostongis.com/PrinterFriendly.aspx?content_name=loading_osm_postgis)
+
+```
+sudo apt-get install osm2pgsql
+```
+
+
