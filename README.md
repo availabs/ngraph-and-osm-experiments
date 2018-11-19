@@ -70,6 +70,9 @@ out body;
 
 [\[out:json\];way\["highway"~"trunk|secondary"\]\(around:100,40.7831,-73.9712\);\(._;>;\);out;](http://localhost:8000/api/interpreter?data=%5Bout%3Ajson%5D%3Bway%5B%22highway%22~%22trunk%7Csecondary%22%5D%28around%3A100%2C40%2E7831%2C-73%2E9712%29%3B%28%2E_%3B%3E%3B%29%3Bout%3B%0A)
 
+##### To Use This Server in the ngraph.path.demo
+
+Change the `OVERPASS_HOST` variable to `http://localhost:8000` in [src/lib/loadGraph.js](https://github.com/availabs/ngraph-and-osm-experiments/blob/master/ngraph.path.demo/src/lib/loadGraph.js)
 
 ---
 
